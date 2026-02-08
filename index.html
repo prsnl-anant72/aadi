@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <meta name="description" content="A special marriage proposal website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --cream: #E8DCC4;
+            --dark: #111;
+            --white: #ffffff;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .uppercase { text-transform: uppercase; }
+        .tracking-widest { letter-spacing: 0.25em; }
+        .tracking-tighter { letter-spacing: -0.025em; }
+        .opacity-80 { opacity: 0.8; }
+        .opacity-70 { opacity: 0.7; }
+        .opacity-60 { opacity: 0.6; }
+        .opacity-50 { opacity: 0.5; }
+        .opacity-40 { opacity: 0.4; }
+        .hidden { display: none; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-16 { gap: 4rem; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .min-h-screen { min-height: 100vh; }
+        .min-h-90vh { min-height: 90vh; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .max-w-6xl { max-width: 72rem; }
+        .max-w-7xl { max-width: 80rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-md { max-width: 28rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-16 { margin-top: 4rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mb-20 { margin-bottom: 5rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .p-10 { padding: 2.5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .px-12 { padding-left: 3rem; padding-right: 3rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-20 { padding-top: 5rem; }
+        .pb-10 { padding-bottom: 2.5rem; }
+        .border { border-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-sm { border-radius: 0.125rem; }
+        .border-cream { border-color: var(--cream); }
+        .border-cream-10 { border-color: rgba(232, 220, 196, 0.1); }
+        .bg-cream { background-color: var(--cream); }
+        .bg-dark { background-color: var(--dark); }
+        .bg-transparent { background-color: transparent; }
+        .bg-dark-1a { background-color: #1a1a1a; }
+        .text-cream { color: var(--cream); }
+        .text-dark { color: var(--dark); }
+        .text-white { color: var(--white); }
+        .text-xs { font-size: 0.75rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-7xl { font-size: 4.5rem; }
+        .text-8xl { font-size: 6rem; }
+        .text-9xl { font-size: 8rem; }
+        .font-bold { font-weight: 700; }
+        .font-light { font-weight: 300; }
+        .leading-none { line-height: 1; }
+        .leading-relaxed { line-height: 1.625; }
+        .leading-85 { line-height: 0.85; }
+        .leading-90 { line-height: 0.9; }
+        .cursor-default { cursor: default; }
+        .cursor-pointer { cursor: pointer; }
+        .pointer-events-none { pointer-events: none; }
+        .overflow-hidden { overflow: hidden; }
+        .whitespace-nowrap { white-space: nowrap; }
+        .z-10 { z-index: 10; }
+        .z-20 { z-index: 20; }
+        .z-50 { z-index: 50; }
+        .transition-all { transition-property: all; }
+        .transition-transform { transition-property: transform; }
+        .duration-300 { transition-duration: 300ms; }
+        .duration-700 { transition-duration: 700ms; }
+        .duration-1000 { transition-duration: 1000ms; }
+        .ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-scale-110:hover { transform: scale(1.1); }
+        .hover-bg-cream:hover { background-color: var(--cream); }
+        .hover-text-dark:hover { color: var(--dark); }
+        .hover-grayscale-0:hover { filter: grayscale(0%); }
+        .mix-blend-difference { mix-blend-mode: difference; }
+        .mix-blend-overlay { mix-blend-mode: overlay; }
+        .object-cover { object-fit: cover; }
+        .aspect-3-4 { aspect-ratio: 3/4; }
+        .grayscale { filter: grayscale(100%); }
+        .scale-110 { transform: scale(1.1); }
+        .m-4 { margin: -1rem; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .bottom-0 { bottom: 0; }
+        .bottom-10 { bottom: 2.5rem; }
+        .left-0 { left: 0; }
+        .left-10 { left: 2.5rem; }
+        .right-10 { right: 2.5rem; }
+        .top-0 { top: 0; }
+        .md-block { display: block; }
+        .md-flex { display: flex; }
+        .md-flex-row { flex-direction: row; }
+        .md-text-2xl { font-size: 1.5rem; }
+        .md-text-4xl { font-size: 2.25rem; }
+        .md-text-9xl { font-size: 8rem; }
+        .md-text-10rem { font-size: 10rem; }
+        .md-text-14rem { font-size: 14rem; }
+        .md-w-28rem { width: 28rem; }
+        .md-p-10 { padding: 2.5rem; }
+        .md-pt-20 { padding-top: 5rem; }
+        .md-mt-16 { margin-top: -4rem; }
+        .md-mb-16 { margin-bottom: -4rem; }
+        .text-15vw { font-size: 15vw; }
+        .text-18vw { font-size: 18vw; }
+
+        /* Custom Effects */
+        .text-outline {
+            -webkit-text-stroke: 1px var(--cream);
+            color: transparent;
+        }
+        .text-outline:hover {
+            color: var(--cream);
+        }
+
+        /* Image Blend Effects */
+        .blend-screen {
+            mix-blend-mode: screen;
+            opacity: 0.8;
+        }
+        .blend-lighten {
+            mix-blend-mode: lighten;
+            opacity: 0.7;
+        }
+        .blend-overlay {
+            mix-blend-mode: overlay;
+            opacity: 0.6;
+        }
+        .blend-soft-light {
+            mix-blend-mode: soft-light;
+            opacity: 0.8;
+        }
+        .image-blend {
+            filter: brightness(1.1) contrast(1.2) saturate(1.1);
+            opacity: 0.85;
+        }
+
+        .image-container {
+            backdrop-filter: blur(1px);
+            background: rgba(17, 17, 17, 0.1);
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(17, 17, 17, 0.3), rgba(232, 220, 196, 0.1));
+            pointer-events: none;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Button Styles */
+        .btn {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-yes {
+            background-color: var(--cream);
+            color: var(--dark);
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            border: 2px solid var(--cream);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-no {
+            background-color: transparent;
+            color: var(--cream);
+            border: 1px solid var(--cream);
+            padding: 1rem 2.5rem;
+            font-size: 1.25rem;
+            position: static;
+            z-index: 50;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .md-block { display: block; }
+            .md-flex { display: flex; }
+            .md-flex-row { flex-direction: row; }
+            .md-text-2xl { font-size: 1.5rem; }
+            .md-text-4xl { font-size: 2.25rem; }
+            .md-text-9xl { font-size: 8rem; }
+            .md-text-10rem { font-size: 10rem; }
+            .md-text-14rem { font-size: 14rem; }
+            .md-w-28rem { width: 28rem; }
+            .md-p-10 { padding: 2.5rem; }
+            .md-pt-20 { padding-top: 5rem; }
+            .md-mt-16 { margin-top: -4rem; }
+            .md-mb-16 { margin-bottom: -4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Header -->
+        <nav class="flex justify-between items-center p-6 md:p-10 uppercase tracking-widest text-xs font-inter opacity-80">
+            <div>My Love Story</div>
+            <div class="flex items-center gap-2">
+                <span>Scroll for Love</span>
+                <svg width="40" height="10" viewBox="0 0 40 10" fill="none">
+                    <path d="M0 5H39M39 5L35 1M39 5L35 9" stroke="var(--cream)" stroke-width="0.8"/>
+                </svg>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="relative min-h-90vh flex flex-col items-center justify-center px-4 mb-20">
+            <div class="relative z-10 w-full max-w-6xl mx-auto text-center">
+                <h1 class="font-oswald text-18vw md:text-14rem leading-85 font-bold uppercase tracking-tighter mix-blend-difference text-cream">
+                    MARRY
+                </h1>
+
+                <div class="relative md:mt-16 md:mb-16 z-20 w-full flex justify-center pointer-events-none">
+                    <div class="w-80vw md:w-28rem aspect-3-4 overflow-hidden rounded-sm relative image-container">
+                        <img src="WhatsApp Image 2026-02-08 at 23.15.52.jpeg"
+                             alt="Couple Portrait"
+                             class="w-full h-full object-cover image-blend grayscale hover-grayscale-0 transition-all duration-700 ease-in-out scale-110" />
+                        <div class="absolute inset-0 border border-cream m-4 opacity-50"></div>
+                    </div>
+                </div>
+
+                <h1 class="font-oswald text-18vw md:text-14rem leading-85 font-bold uppercase tracking-tighter text-outline opacity-90 z-10 relative">
+                    ME?
+                </h1>
+            </div>
+
+            <div class="absolute bottom-10 left-10 text-xs font-inter tracking-widest uppercase opacity-60 hidden md-block">
+                To: The One I Love<br/>
+                From: Your Future Husband
+            </div>
+            <div class="absolute bottom-10 right-10 text-xs font-inter tracking-widest uppercase opacity-60 hidden md-block">
+                Date: Today<br/>
+                Status: Hopeful
+            </div>
+        </section>
+
+        <!-- Reasons Section -->
+        <section class="py-20 px-4 md:px-10 border-t border-cream-10">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
+                <div class="flex-1">
+                    <p class="text-xs font-inter uppercase tracking-widest mb-4 opacity-70">The Evidence</p>
+                    <h2 class="font-oswald text-7xl md:text-9xl font-bold uppercase leading-90 text-cream">
+                        REASONS<br/>WHY I<br/><span class="text-outline">LOVE YOU</span>
+                    </h2>
+                    <div class="mt-8 max-w-md font-inter text-sm leading-relaxed opacity-70">
+                        Every day with you is an adventure. You are my best friend, my confidant, and the love of my life. Here is a brief index of why I want to spend forever with you.
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col justify-center gap-6 md:pt-20" id="reasons-list">
+                    <!-- Reasons will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Proposal Section -->
+        <section class="py-20 px-4 md:px-10 border-t border-cream-10 min-h-screen flex flex-col justify-center">
+            <div class="max-w-7xl mx-auto w-full">
+                <p class="text-xs font-inter uppercase tracking-widest mb-4 opacity-70">The Final Question</p>
+
+                <div class="relative w-full h-60vh bg-dark-1a mb-10 overflow-hidden group image-container">
+                    <img src="WhatsApp Image 2026-02-08 at 23.15.53.jpeg"
+                         alt="Holding Hands"
+                         class="w-full h-full object-cover blend-soft-light group-hover-scale-105 transition-transform duration-1000" />
+                    <div class="absolute bottom-0 left-0 w-full p-4 md:p-10">
+                        <h2 class="font-oswald text-15vw md:text-10rem font-bold uppercase leading-none tracking-tighter text-cream mix-blend-overlay">
+                            FOREVER?
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="text-center font-inter mb-12">
+                    <p class="text-xl md:text-2xl font-light tracking-wide max-w-2xl mx-auto">
+                        Will you make me the happiest person in the world?
+                    </p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-center items-center gap-8 h-32 relative">
+                    <button id="yes-btn" class="btn btn-yes text-2xl md:text-4xl px-12 py-4">
+                        YES
+                    </button>
+                    <button id="no-btn" class="btn btn-no text-xl md:text-2xl px-10 py-4">
+                        No
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-10 text-center border-t border-cream-10 opacity-40 font-inter text-xs uppercase tracking-widest">
+            <p>Created for my one and only</p>
+        </footer>
+    </div>
+
+    <!-- Celebration Content (Hidden initially) -->
+    <div id="celebration-content" class="min-h-screen bg-dark text-cream flex flex-col items-center justify-center relative overflow-hidden hidden">
+        <div class="z-10 text-center p-8 animate-fade-in-up">
+            <h1 class="font-oswald text-8xl md:text-9xl font-bold mb-8 tracking-tighter uppercase leading-none text-cream">
+                SHE SAID<br/><span class="text-white">YES!</span>
+            </h1>
+            <p class="font-oswald text-xl tracking-025em uppercase mb-8 opacity-80">Best decision of my life</p>
+            <div class="w-full max-w-md mx-auto aspect-3-4 overflow-hidden rounded-lg relative image-container">
+                <img src="WhatsApp Image 2026-02-08 at 23.15.53 (1).jpeg"
+                     alt="Engagement Ring"
+                     class="w-full h-full object-cover blend-overlay" />
+            </div>
+            <p class="mt-8 text-sm opacity-50 tracking-widest">FOREVER & ALWAYS</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the Marriage Proposal Website
+
+        // State management
+        let accepted = false;
+        let hoverCount = 0;
+        let noBtnPosition = { position: 'static', top: 'auto', left: 'auto' };
+
+        // DOM Elements
+        const mainContent = document.getElementById('main-content');
+        const celebrationContent = document.getElementById('celebration-content');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const reasonsList = document.getElementById('reasons-list');
+        const confettiCanvas = document.getElementById('confetti-canvas');
+
+        // Confetti variables
+        let particles = [];
+        let animationId;
+
+        // Confetti Particle Class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight - window.innerHeight;
+                this.size = Math.random() * 10 + 5;
+                this.speedY = Math.random() * 3 + 2;
+                this.speedX = Math.random() * 2 - 1;
+                this.color = ['#E8DCC4', '#ffffff', '#FFD700', '#ff6b6b'][Math.floor(Math.random() * 4)];
+                this.rotation = Math.random() * 360;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += 2;
+                if (this.y > window.innerHeight) {
+                    this.y = 0 - this.size;
+                    this.x = Math.random() * window.innerWidth;
+                }
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        // Initialize confetti
+        function initConfetti() {
+            const ctx = confettiCanvas.getContext('2d');
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+
+            particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        // Animate confetti
+        function animateConfetti() {
+            const ctx = confettiCanvas.getContext('2d');
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw(ctx);
+            });
+
+            animationId = requestAnimationFrame(animateConfetti);
+        }
+
+        // Handle window resize
+        function handleResize() {
+            if (accepted) {
+                confettiCanvas.width = window.innerWidth;
+                confettiCanvas.height = window.innerHeight;
+            }
+        }
+
+        // Move No button
+        function moveNoButton() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+
+            noBtnPosition = {
+                position: 'fixed',
+                left: `${x}px`,
+                top: `${y}px`
+            };
+
+            noBtn.style.position = noBtnPosition.position;
+            noBtn.style.left = noBtnPosition.left;
+            noBtn.style.top = noBtnPosition.top;
+            noBtn.style.transition = 'all 0.2s ease';
+
+            hoverCount++;
+            updateNoButtonText();
+        }
+
+        // Update No button text
+        function updateNoButtonText() {
+            if (hoverCount > 0) {
+                noBtn.textContent = hoverCount > 4 ? "Try Again ;)" : "Are you sure?";
+            } else {
+                noBtn.textContent = "No";
+            }
+        }
+
+        // Handle Yes button click
+        function handleYes() {
+            accepted = true;
+
+            // Hide main content and show celebration
+            mainContent.classList.add('hidden');
+            celebrationContent.classList.remove('hidden');
+
+            // Start confetti
+            initConfetti();
+            animateConfetti();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Populate reasons list
+        function populateReasons() {
+            const reasons = [
+                { num: '01', text: 'Your Beautiful Smile' },
+                { num: '02', text: 'How You Laugh at My Jokes' },
+                { num: '03', text: 'Our Future Together' },
+                { num: '04', text: 'You are My Best Friend' },
+                { num: '05', text: 'We make a Great Team' }
+            ];
+
+            reasons.forEach(reason => {
+                const reasonDiv = document.createElement('div');
+                reasonDiv.className = 'group flex items-center gap-4 cursor-default';
+                reasonDiv.innerHTML = `
+                    <div class="flex-1 border border-cream rounded-full px-8 py-4 flex justify-between items-center transition-all duration-300 hover-bg-cream hover-text-dark">
+                        <span class="font-inter uppercase text-xs tracking-widest">${reason.text}</span>
+                        <span class="font-inter text-xs opacity-60">${reason.num}</span>
+                    </div>
+                `;
+                reasonsList.appendChild(reasonDiv);
+            });
+        }
+
+        // Initialize the website
+        function init() {
+            // Populate reasons
+            populateReasons();
+
+            // Add event listeners
+            yesBtn.addEventListener('click', handleYes);
+            noBtn.addEventListener('mouseenter', moveNoButton);
+            noBtn.addEventListener('click', moveNoButton);
+            window.addEventListener('resize', handleResize);
+
+            // Set initial No button text
+            updateNoButtonText();
+        }
+
+        // Start the website
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
