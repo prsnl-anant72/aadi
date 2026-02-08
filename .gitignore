@@ -49,3 +49,11 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Vite cache
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
